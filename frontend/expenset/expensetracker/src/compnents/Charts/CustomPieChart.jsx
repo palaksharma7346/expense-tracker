@@ -1,6 +1,7 @@
 import React from 'react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend,Tooltip } from 'recharts';
 import CustomTooltip from './CustomTooltip';
+import CustomLegend from './CustomLegend';
 const CustomPieChart = ({ data, label, totalAmount, colors, showTextAnchor }) => {
   return (
     <ResponsiveContainer width="100%" height={300}>

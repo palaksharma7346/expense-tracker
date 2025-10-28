@@ -12,6 +12,9 @@ import { addThousandsSeparator } from '../../utils/helper.js';
 import { LuHandCoins,LuWalletMinimal } from 'react-icons/lu';
 import RecentTransactions from '../../compnents/Dashboard/RecentTransactions.jsx';
 import FinanceOverview from '../../compnents/Dashboard/FinanceOverview.jsx';
+import Last30DaysExpenses from '../../compnents/Dashboard/last30DaysExpenses.jsx';
+import RecentIncomeWithChart from '../../compnents/Dashboard/RecentIncomeWithChart.jsx';
+import ExpenseTransactions from '../../compnents/Dashboard/ExpenseTransactions.jsx';
 const Home = () => {
   useUserAuth();
   const navigate = useNavigate();
@@ -64,7 +67,7 @@ const Home = () => {
 
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2  gap-4 mt-6'>
-        <RecentTransactions
+        {/* <RecentTransactions
         transactions = {dashboardData?.recenttransactions }
         onSeeMore = {()=>navigate("/expense")}
         />
@@ -72,7 +75,17 @@ const Home = () => {
         totalbalance = {dashboardData?.totalbalance || 0}
         totalIncome = {dashboardData?.totalIncome || 0}
         totalExpense = {dashboardData?.totalExpense || 0}
+        /> */}
+        <ExpenseTransactions
+        transactions = {dashboardData?.last30DaysExpenses?.transactions || []}
+        onSeeMore = {()=>navigate("/expense")}
         />
+        <Last30DaysExpenses
+        data = {dashboardData?.last30DaysExpenses?.data || []}
+        />
+        {/* <RecentIncomeWithChart
+        data = {dashboardData?.last30DaysIncome?.transactions.slice(0,4) || []}
+        totalIncome = {dashboardData.totalIncome || 0} /> */}
 
       </div>
     </div>
