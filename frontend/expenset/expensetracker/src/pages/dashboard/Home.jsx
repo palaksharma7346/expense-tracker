@@ -15,6 +15,7 @@ import FinanceOverview from '../../compnents/Dashboard/FinanceOverview.jsx';
 import Last30DaysExpenses from '../../compnents/Dashboard/last30DaysExpenses.jsx';
 import RecentIncomeWithChart from '../../compnents/Dashboard/RecentIncomeWithChart.jsx';
 import ExpenseTransactions from '../../compnents/Dashboard/ExpenseTransactions.jsx';
+import RecentIncome from '../../compnents/Dashboard/RecentIncome.jsx';
 const Home = () => {
   useUserAuth();
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const Home = () => {
     try{
       const response = await axiosInstance.get(`${API_PATHS.DASHBOARD.GET_DATA}`);
       if(response.data){
+        console.log("DASHBOARD DATA:", response.data);
         setDashboardData(response.data);
       }
     }
@@ -67,7 +69,7 @@ const Home = () => {
 
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2  gap-4 mt-6'>
-        {/* <RecentTransactions
+        <RecentTransactions
         transactions = {dashboardData?.recenttransactions }
         onSeeMore = {()=>navigate("/expense")}
         />
@@ -75,7 +77,7 @@ const Home = () => {
         totalbalance = {dashboardData?.totalbalance || 0}
         totalIncome = {dashboardData?.totalIncome || 0}
         totalExpense = {dashboardData?.totalExpense || 0}
-        /> */}
+        />
         <ExpenseTransactions
         transactions = {dashboardData?.last30DaysExpenses?.transactions || []}
         onSeeMore = {()=>navigate("/expense")}
@@ -83,10 +85,14 @@ const Home = () => {
         <Last30DaysExpenses
         data = {dashboardData?.last30DaysExpenses?.data || []}
         />
-        {/* <RecentIncomeWithChart
-        data = {dashboardData?.last30DaysIncome?.transactions.slice(0,4) || []}
-        totalIncome = {dashboardData.totalIncome || 0} /> */}
+        <RecentIncomeWithChart
+        data = {dashboardData?.last30DaysIncome?.transactions?.slice(0,4) || []}
+        totalIncome = {dashboardData?.totalIncome || 0} />
 
+        <RecentIncome 
+        transactions = {dashboardData?.last60DaysIncome?.transactions || []}
+        onSeeMore = {()=>navigate("/income")}
+        />
       </div>
     </div>
    </DashboardLayout>
