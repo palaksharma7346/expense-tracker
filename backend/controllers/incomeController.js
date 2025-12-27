@@ -11,7 +11,7 @@ exports.addIncome = async (req, res) => {
         const { icon, amount, source, date } = req.body;
 
         // Check if all fields are filled
-        if (!icon || !amount || !source) {
+        if ( !amount || !source) {
             return res.status(400).json({ message: "Please fill all the fields" });
         }
         const newIncome = new Income({

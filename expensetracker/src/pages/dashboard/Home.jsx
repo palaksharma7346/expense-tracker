@@ -86,11 +86,11 @@ const Home = () => {
         data = {dashboardData?.last30DaysExpenses?.data || []}
         />
         <RecentIncomeWithChart
-        data = {dashboardData?.last30DaysIncome?.transactions?.slice(0,4) || []}
+        data = {dashboardData?.last60daysincome?.transactions?.slice(0,4) || []}
         totalIncome = {dashboardData?.totalIncome || 0} />
 
         <RecentIncome 
-        transactions = {dashboardData?.last60DaysIncome?.transactions || []}
+        transactions = {dashboardData?.last60daysincome?.transactions || []}
         onSeeMore = {()=>navigate("/income")}
         />
       </div>
