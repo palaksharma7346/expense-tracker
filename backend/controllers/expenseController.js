@@ -8,16 +8,15 @@ exports.addExpense = async (req, res) => {
     const userId = req.user.id;
     console.log("🔥 req.user:", req.user);
     try{
-        const { icon, category, amount, date } = req.body;
+        const {  category, amount, date } = req.body;
 
         // Check if all fields are filled
-        if (!icon || !category || !amount) {
+        if ( !category || !amount) {
             return res.status(400).json({ message: "Please fill all the fields" });
         }
         const newExpense = new Expense({
             userId,
-            icon,
-            amount,
+            amount: Number(amount),
             category,
             date:  date ? new Date(date) : Date.now() // Use provided date or current date
         });

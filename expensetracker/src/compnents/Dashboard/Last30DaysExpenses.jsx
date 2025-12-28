@@ -5,7 +5,9 @@ import CustomBarChart from '../Charts/CustomBarChart';
 const Last30DaysExpenses = ({ data }) => {
     const [chartData, setChartData] = useState([]);
     useEffect(() => {
+        console.log("Last30DaysExpenses data:", data);
         const result = prepareExpenseBarChartData(data);
+        console.log("Chart data:", result);
         setChartData(result);
         return () => {};
     }, [data]);

@@ -12,7 +12,7 @@ import { addThousandsSeparator } from '../../utils/helper.js';
 import { LuHandCoins,LuWalletMinimal } from 'react-icons/lu';
 import RecentTransactions from '../../compnents/Dashboard/RecentTransactions.jsx';
 import FinanceOverview from '../../compnents/Dashboard/FinanceOverview.jsx';
-import Last30DaysExpenses from '../../compnents/Dashboard/last30DaysExpenses.jsx';
+import Last30DaysExpenses from '../../compnents/Dashboard/Last30DaysExpenses.jsx';
 import RecentIncomeWithChart from '../../compnents/Dashboard/RecentIncomeWithChart.jsx';
 import ExpenseTransactions from '../../compnents/Dashboard/ExpenseTransactions.jsx';
 import RecentIncome from '../../compnents/Dashboard/RecentIncome.jsx';
@@ -79,11 +79,11 @@ const Home = () => {
         totalExpense = {dashboardData?.totalExpense || 0}
         />
         <ExpenseTransactions
-        transactions = {dashboardData?.last30DaysExpenses?.transactions || []}
+        transactions = {dashboardData?.last30daysexpense?.transactions || []}
         onSeeMore = {()=>navigate("/expense")}
         />
         <Last30DaysExpenses
-        data = {dashboardData?.last30DaysExpenses?.data || []}
+        data = {dashboardData?.last30daysexpense?.transactions || []}
         />
         <RecentIncomeWithChart
         data = {dashboardData?.last60daysincome?.transactions?.slice(0,4) || []}

@@ -87,7 +87,25 @@ catch(error){
 
 //handle dowmnload income data
 
-const handleDownloadIncomeDetails = async ()=>{};
+const handleDownloadIncomeDetails = async ()=>{
+  try{
+    const response = await axiosInstance.get(API_PATHS.INCOME.DOWNLOAD_INCOME, {
+      responseType: 'blob',
+    });
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'income_data.xlsx');
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  }
+  catch(error){
+    console.error("something went wrong. Please try again ",error);
+    toast.error("Failed to download income data. Please try again.");
+  }
+};
 
 
 

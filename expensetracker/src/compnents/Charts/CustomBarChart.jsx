@@ -19,11 +19,14 @@ const CustomBarChart = ({ data = [] }) => {
     };
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
+            const p = payload[0];
+            const label = p.payload?.month || p.name || '';
+            const value = p.value ?? p.payload?.amount ?? 0;
             return (
                 <div className='bg-white p-2 border border-gray-300 rounded-lg shadow-md'>
-                    <p className='text-xs font-semibold text-black mb-1'>{payload[0].payload.category}</p>
+                    <p className='text-xs font-semibold text-black mb-1'>{label}</p>
                     <p className='text-sm text-gray-700'>
-                        Amount : <span className='text-sm font-medium text-gray-500'>${payload[0].amount}</span>
+                        Amount : <span className='text-sm font-medium text-gray-500'>${value}</span>
                     </p>
                 </div>
             );
