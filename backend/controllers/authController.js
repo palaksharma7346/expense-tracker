@@ -25,8 +25,13 @@ exports.registerUser = async (req, res) => {
 
         res.status(201).json({ id: user._id, user, token: generateToken(user._id), });
     } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
-    }   
+    console.log("REGISTER ERROR:", err);
+
+    res.status(500).json({
+        message: 'Server error',
+        error: err.message
+    });
+}
 };
 //login user                                                                                                                                             
 exports.loginUser = async(req,res) => {
